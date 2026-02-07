@@ -5,6 +5,8 @@ import morgan from 'morgan';
 import path from "path";
 import { fileURLToPath } from "url";
 
+import projects from './data/projects.json' with { type: 'json' };
+
 
 // CREATE EXPRESS APP
 // Here you should create your Express app:
@@ -30,6 +32,9 @@ app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '/views
 
 app.get('/blog', (req, res) => res.status(200).sendFile(path.join(__dirname, '/views/blog.html')));
 
+app.get('/api/projects', (req, res) => {
+    res.status(200).json(projects);
+});
 
 // START THE SERVER
 // Make your Express server listen on port 5005:
