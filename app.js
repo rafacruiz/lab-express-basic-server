@@ -2,11 +2,16 @@
 // Here you should import the required packages for your Express app: `express` and `morgan`
 import express from 'express';
 import morgan from 'morgan';
+import path from "path";
+import { fileURLToPath } from "url";
 
 
 // CREATE EXPRESS APP
 // Here you should create your Express app:
 const app = express();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // MIDDLEWARE
@@ -21,7 +26,7 @@ app.use(morgan('dev'));
 
 // ROUTES
 // Start defining your routes here:
-
+app.get('/', (req, res) => res.status(200).sendFile(path.join(__dirname, '/views/home.html')));
 
 
 // START THE SERVER
